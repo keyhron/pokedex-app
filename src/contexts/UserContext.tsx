@@ -7,18 +7,14 @@ import Loader from "@/components/Atoms/Loader";
 
 interface IContextUser {
   user?: IUser;
-  loading: boolean;
   signIn: ({ email, password }: ICredentials) => void;
   signOut: () => void;
-  handleUserToken: () => void;
 }
 
 export const UserContext = createContext<IContextUser>({
   user: undefined,
-  loading: false,
   signIn: () => {},
   signOut: () => {},
-  handleUserToken: () => {},
 });
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
@@ -89,11 +85,9 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       value={{
         // Values
         user,
-        loading,
         // Methods
         signIn,
         signOut,
-        handleUserToken,
       }}
     >
       {loading && <Loader />}
