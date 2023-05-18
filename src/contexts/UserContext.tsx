@@ -22,14 +22,11 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const signIn = async ({ email, password }: ICredentials) => {
+  const signIn = ({ email, password }: ICredentials) => {
     setLoading(true);
 
     try {
-      const { message, valid, user, token } = await validateSignIn(
-        email,
-        password
-      );
+      const { message, valid, user, token } = validateSignIn(email, password);
 
       if (valid && token) {
         // Set token

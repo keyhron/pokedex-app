@@ -35,9 +35,24 @@ export function validateSignIn(email: string, password: string): IValidateData {
     };
   }
 
+  console.log(
+    "normal",
+    userCredentials.some(
+      (user) => user.email === email && user.password === password
+    )
+  );
+  console.log(
+    false,
+    !userCredentials.some(
+      (user) => user.email === email && user.password === password
+    )
+  );
+
+  // Validate credentials
   if (
-    email !== userCredentials.email ||
-    password !== userCredentials.password
+    !userCredentials.some(
+      (user) => user.email === email && user.password === password
+    )
   ) {
     return {
       valid: false,
@@ -45,10 +60,12 @@ export function validateSignIn(email: string, password: string): IValidateData {
     };
   }
 
+  // Find user
+  const user = userData.find((user) => user.email === email) as IUser;
+
   // Create token
-  console.log(userData.id, process.env.NEXT_PUBLIC_JWT_SECRET);
   const token = jwt.sign(
-    { userId: userData.id },
+    { userId: user.id },
     process.env.NEXT_PUBLIC_JWT_SECRET as string,
     {
       expiresIn: "1h",
@@ -58,7 +75,7 @@ export function validateSignIn(email: string, password: string): IValidateData {
   return {
     valid: true,
     message: "Inicio de sesión exitoso",
-    user: userData,
+    user,
     token,
   };
 }
@@ -69,12 +86,14 @@ export function validateUserToken() {
     token,
     process.env.NEXT_PUBLIC_JWT_SECRET as string
   );
-
   const userId = (decodedToken as IDecodedToken).userId;
-  if (userId && userId !== userData.id) {
+
+  // Find user
+  const user = userData.find((user) => user.id === userId) as IUser;
+  if (!user) {
     throw Error("El usuario no existe");
   } else {
-    return userData;
+    return user;
   }
 }
 

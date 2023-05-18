@@ -18,9 +18,9 @@ const Login = () => {
   };
 
   return (
-    <main className="flex h-screen">
-      <div className="w-2/5 flex justify-center items-center">
-        <form className="w-full px-20" onSubmit={handleSubmit}>
+    <div className="flex flex-col-reverse justify-end lg:flex-row h-screen">
+      <div className="w-full lg:w-2/5 mt-20 lg:mt-0 flex justify-center items-center">
+        <form className="w-full px-10 lg:px-20" onSubmit={handleSubmit}>
           <Title>Iniciar Sesión</Title>
           <div className="mb-4">
             <input
@@ -53,16 +53,11 @@ const Login = () => {
               />
             </button>
           </div>
-          <Button
-            type="submit"
-            className="bg-red-500 hover:bg-red-700 text-white text-sm font-bold py-2 px-6 rounded"
-          >
-            Entrar
-          </Button>
+          <Button type="submit">Entrar</Button>
         </form>
       </div>
-      <div className="w-3/5 bg-cover bg-center bg-no-repeat bg-pokedex" />
-    </main>
+      <div className="w-full lg:w-3/5 h-40 lg:h-full bg-cover bg-center bg-no-repeat bg-pokedex" />
+    </div>
   );
 };
 

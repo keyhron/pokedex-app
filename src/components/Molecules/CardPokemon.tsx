@@ -25,7 +25,7 @@ const CardPokemon = ({
         />
 
         <div className="w-full absolute bottom-4 flex items-center justify-between px-6">
-          <h2 className="text-sm">{formattedDate()}</h2>
+          <h2 className="hidden text-sm lg:flex">{formattedDate()}</h2>
           <button className="outline-none border-0 rounded-2xl text-white bg-red-600 w-32 text-xs h-6">
             {pokemon.weight / 10} Kg
           </button>
@@ -34,7 +34,7 @@ const CardPokemon = ({
       <div className="h-32 p-4 flex flex-col justify-between">
         <h1 className="text-lg font-bold">{capitalize(pokemon.name)}</h1>
         <div className="flex flex-wrap">
-          {pokemon.moves?.slice(0, 10).map((move) => (
+          {pokemon.moves?.slice(0, 4).map((move) => (
             <p key={move.move.url} className="text-xs mr-1">
               #{capitalize(move.move.name)}
             </p>

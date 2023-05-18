@@ -17,7 +17,7 @@ const Menu = () => {
   ]);
 
   return (
-    <nav className="absolute z-10 top-10 -left-10 flex flex-col text-sm bg-white border border-gray-100 rounded-lg shadow-md w-32">
+    <nav className="absolute z-10 -right-5 top-11 lg:top-10 lg:-left-10 flex flex-col text-sm bg-white border border-gray-100 rounded-lg shadow-md w-screen lg:w-32">
       {actions.current.map((item, i) => (
         <Link
           key={i}

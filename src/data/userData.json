@@ -1,7 +1,15 @@
-{
-  "id": "1",
-  "first_name": "Carlos",
-  "last_name": "Barrios",
-  "email": "juanbarrios045@gmail.com"
-}
+[
+  {
+    "id": "1",
+    "first_name": "Carlos",
+    "last_name": "Barrios",
+    "email": "usuario@gmail.com"
+  },
+  {
+    "id": "2",
+    "first_name": "Juan",
+    "last_name": "Sanchez",
+    "email": "usuario2@gmail.com"
+  }
+]
 

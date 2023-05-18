@@ -44,11 +44,13 @@ const Pagination = ({
   onPrevious,
 }: IPagination) => (
   <div className={`flex flex-col items-center w-full ${className}`}>
-    <span className="text-sm text-gray-700">
-      <span className="font-semibold text-gray-900">{page}</span> a{" "}
-      <span className="font-semibold text-gray-900">{totalPages}</span> de{" "}
+    <p className="text-sm text-gray-700 text-center">
+      Hay un total de{" "}
       <span className="font-semibold text-gray-900">{totalItems}</span> {title}
-    </span>
+      <br />
+      <span className="font-semibold text-gray-900">Página {page}</span> de{" "}
+      <span className="font-semibold text-gray-900">{totalPages}</span>
+    </p>
     <div className="flex mt-2 gap-1">
       <ButtonPag onClick={onPrevious} disabled={disabledPreviousButton}>
         Anterior
