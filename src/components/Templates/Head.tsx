@@ -4,7 +4,7 @@ const title = "Pokedex App";
 const URL = process.env.NEXT_PUBLIC_URI;
 const description =
   "Descubre todos los secretos de los Pokémon con nuestra aplicación de Pokédex. Encuentra información detallada sobre cada Pokémon, incluyendo su nombre, descripción, tipo, habilidades, estadísticas y mucho más. Además, nuestra aplicación cuenta con una amplia galería de imágenes para que puedas ver cada Pokémon en detalle. ¡Conviértete en un maestro Pokémon y descubre todo lo que necesitas saber sobre tus criaturas favoritas con nuestra aplicación de Pokédex! Descarga ahora y comienza tu aventura Pokémon.";
-const ogImage = "/image-seo.png";
+const ogImage = "/images/pokedex-hand.jpg";
 
 const Head = () => (
   <NextHead>
@@ -27,11 +27,8 @@ const Head = () => (
     {/* Name of web application (only should be used if the website is used as an app) */}
     <meta name="application-name" content={title} />
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="shortcut icon" href="/svgs/pokedex.svg" />
 
     <meta property="og:site_name" content="Guanare Market" />
     <meta property="og:type" content="website" />

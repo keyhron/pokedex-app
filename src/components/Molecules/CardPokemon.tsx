@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Image from "next/image";
 import { Pokemon } from "@/interfaces/pokemon";
 import capitalize from "@/utils/capitalize";
@@ -11,8 +12,9 @@ const CardPokemon = ({
   className?: string;
 }) => {
   return (
-    <div
+    <Link
       className={`bg-white border border-gray-200 rounded-lg shadow ${className}`}
+      href={`/pokemon/${pokemon.id}`}
     >
       <div className="relative bg-white w-full rounded-t-lg flex items-center justify-center bg-gradient-to-t from-[#ff6c6c3d] via-transparent to-transparent">
         <Image
@@ -39,7 +41,7 @@ const CardPokemon = ({
           ))}
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
