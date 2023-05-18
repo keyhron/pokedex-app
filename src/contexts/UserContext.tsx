@@ -38,7 +38,6 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       } else {
         Swal.fire({
           icon: "error",
-          title: "Oops...",
           text: message,
         });
       }

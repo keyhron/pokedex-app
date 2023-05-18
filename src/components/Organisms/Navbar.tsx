@@ -7,7 +7,7 @@ const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
 
   return (
-    <nav className="w-full bg-red-600">
+    <nav className="w-full bg-red-600 relative">
       <div className="flex justify-between px-5 w-full h-14 items-center max-w-screen-md xl:max-w-screen-lg 2xl:max-w-screen-xl mx-auto">
         <Link
           className="text-sm lg:text-md p-2 text-white flex items-center"
@@ -23,7 +23,7 @@ const Navbar = () => {
             />
           </span>
         </Link>
-        <div className="relative">
+        <div className="lg:relative">
           <button
             className="rounded-full bg-red-500 p-2 hover:bg-red-700 transition-colors"
             onClick={() => setOpenMenu(!openMenu)}

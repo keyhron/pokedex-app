@@ -24,21 +24,20 @@ const Login = () => {
           <Title>Iniciar Sesión</Title>
           <div className="mb-4">
             <input
+              name="email"
               className="w-full border border-gray-400 p-2 rounded outline-none"
               placeholder="Correo electrónico"
               type="email"
               onChange={(e) => setEmail(e.target.value)}
-              required
             />
           </div>
           <div className="relative mb-10">
             <input
+              name="password"
               className="w-full border border-gray-400 p-2 rounded outline-none"
               placeholder="Contraseña"
               type={showPassword ? "text" : "password"}
               onChange={(e) => setPassword(e.target.value)}
-              minLength={8}
-              required
             />
             <button
               type="button"
