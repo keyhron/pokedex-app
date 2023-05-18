@@ -46,9 +46,10 @@ export function validateSignIn(email: string, password: string): IValidateData {
   }
 
   // Create token
+  console.log(userData.id, process.env.NEXT_PUBLIC_JWT_SECRET);
   const token = jwt.sign(
     { userId: userData.id },
-    process.env.NEXT_PUBLICT_JWT_SECRET as string,
+    process.env.NEXT_PUBLIC_JWT_SECRET as string,
     {
       expiresIn: "1h",
     }
@@ -64,7 +65,10 @@ export function validateSignIn(email: string, password: string): IValidateData {
 
 export function validateUserToken() {
   const token = localStorage.getItem("token") as string;
-  const decodedToken = jwt.verify(token, process.env.JWT_SECRET as string);
+  const decodedToken = jwt.verify(
+    token,
+    process.env.NEXT_PUBLIC_JWT_SECRET as string
+  );
 
   const userId = (decodedToken as IDecodedToken).userId;
   if (userId && userId !== userData.id) {

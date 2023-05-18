@@ -17,7 +17,6 @@ const Head = () => (
       content="Pokédex, Pokémon, Información detallada sobre cada Pokémon, Tipos de Pokémon, Habilidades de Pokémon, Estadísticas de Pokémon, Galería de imágenes de Pokémon, Maestro Pokémon, Aventura Pokémon, Descarga de Pokédex, Criaturas Pokémon, Aplicación de Pokédex."
     />
     <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="format-detection" content="telephone=no" />
     {/* PWA primary color */}
     <meta name="theme-color" content="red" />
 
@@ -27,7 +26,6 @@ const Head = () => (
     {/* Name of web application (only should be used if the website is used as an app) */}
     <meta name="application-name" content={title} />
 
-    <link rel="manifest" href="/site.webmanifest" />
     <link rel="shortcut icon" href="/svgs/pokedex.svg" />
 
     <meta property="og:site_name" content="Guanare Market" />
