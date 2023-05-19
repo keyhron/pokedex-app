@@ -125,7 +125,7 @@ describe("Signin page", () => {
     );
   });
 
-  it("Signin success", function () {
+  it("Signin success with enter keyboard", function () {
     const email = "usuario@gmail.com";
     const password = "01020304";
 
@@ -135,6 +135,27 @@ describe("Signin page", () => {
 
     // {enter} causes the form to submit
     cy.get("input[name=password]").type(`${password}{enter}`);
+
+    // We should be redirected to /
+    cy.url().should("include", "/");
+
+    // Our auth token should be present
+    cy.window().then((win) => {
+      cy.wrap(win.localStorage.getItem("token")).should("exist");
+    });
+  });
+
+  it("Signin success with click button", function () {
+    const email = "usuario@gmail.com";
+    const password = "01020304";
+
+    cy.visit("/iniciar-sesion");
+
+    cy.get("input[name=email]").type(email);
+
+    cy.get("input[name=password]").type(password);
+
+    cy.get("button[type=submit]").click();
 
     // We should be redirected to /
     cy.url().should("include", "/");
