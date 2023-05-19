@@ -1,0 +1,13 @@
+{
+  "signIn": {
+    "incorrect": "El correo electrónico o la contraseña son incorrectos",
+    "required": "El correo electrónico y la contraseña son obligatorios",
+    "email": {
+      "invalid": "El correo electrónico no es válido"
+    },
+    "password": {
+      "minLength": "La contraseña debe tener al menos 8 caracteres"
+    }
+  }
+}
+

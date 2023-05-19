@@ -21,7 +21,7 @@ const Login = () => {
     <div className="flex flex-col-reverse justify-end lg:flex-row h-screen">
       <div className="w-full lg:w-2/5 mt-20 lg:mt-0 flex justify-center items-center">
         <form className="w-full px-10 lg:px-20" onSubmit={handleSubmit}>
-          <Title>Iniciar Sesión</Title>
+          <Title>Iniciar sesión</Title>
           <div className="mb-4">
             <input
               name="email"
@@ -41,6 +41,7 @@ const Login = () => {
             />
             <button
               type="button"
+              data-cy="eye-btn"
               onClick={toggleShowPassword}
               className="absolute right-0 top-0 bottom-0 px-4 flex items-center text-gray-500"
             >

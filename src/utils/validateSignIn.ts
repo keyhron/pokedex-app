@@ -1,7 +1,8 @@
 import jwt from "jsonwebtoken";
 import userCredentials from "@/data/credentials.json";
-import userData from "@/data/userData.json";
 import { IUser } from "@/interfaces/user";
+import userData from "@/data/userData.json";
+import errorsEs from "@/data/errorsEs.json";
 
 interface IValidateData {
   valid: boolean;
@@ -15,23 +16,23 @@ interface IDecodedToken {
 }
 
 export function validateSignIn(email: string, password: string): IValidateData {
-  const emailRegex = /^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/gm;
+  const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
   if (!email || !password) {
     return {
       valid: false,
-      message: "El correo electrónico y la contraseña son obligatorios",
+      message: errorsEs.signIn.required,
     };
   }
 
   if (!emailRegex.test(email)) {
-    return { valid: false, message: "El correo electrónico no es válido" };
+    return { valid: false, message: errorsEs.signIn.email.invalid };
   }
 
   if (password.length < 8) {
     return {
       valid: false,
-      message: "La contraseña debe tener al menos 8 caracteres",
+      message: errorsEs.signIn.password.minLength,
     };
   }
 
@@ -56,7 +57,7 @@ export function validateSignIn(email: string, password: string): IValidateData {
   ) {
     return {
       valid: false,
-      message: "El correo electrónico o la contraseña son incorrectos",
+      message: errorsEs.signIn.incorrect,
     };
   }
 
