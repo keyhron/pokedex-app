@@ -5,6 +5,7 @@ import PrintData from "@/components/Molecules/PrintData";
 import { Pokemon } from "@/interfaces/pokemon";
 import capitalize from "@/utils/capitalize";
 import PageLayout from "@/components/Templates/PageLayout";
+import { getPokemonById } from "@/data/apiInteface";
 
 export default function Pokemon({ pokemon }: { pokemon: Pokemon }) {
   return (
@@ -59,20 +60,28 @@ export default function Pokemon({ pokemon }: { pokemon: Pokemon }) {
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { id } = context.query;
-  const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
-  const pk: Pokemon = await res.json();
+  const { data: pk, error } = await getPokemonById(id as string);
+
+  if (error !== null) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/",
+      },
+    };
+  }
 
   return {
     props: {
       pokemon: {
-        sprites: pk.sprites,
-        name: pk.name,
-        weight: pk.weight,
-        height: pk.height,
-        abilities: pk.abilities,
-        types: pk.types,
-        stats: pk.stats,
-        moves: pk.moves,
+        sprites: pk?.sprites,
+        name: pk?.name,
+        weight: pk?.weight,
+        height: pk?.height,
+        abilities: pk?.abilities,
+        types: pk?.types,
+        stats: pk?.stats,
+        moves: pk?.moves,
       },
     },
   };
