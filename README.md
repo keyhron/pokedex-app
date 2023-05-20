@@ -22,6 +22,7 @@ To log in, use the following credentials:
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Context API](https://reactjs.org/docs/context.html)
 - [Custom Hooks](https://reactjs.org/docs/hooks-custom.html)
+- [Responsive Web Design](https://www.smashingmagazine.com/2011/01/guidelines-for-responsive-web-design/)
 - [Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/)
 - [Cypress](https://www.cypress.io/)
 - [Pokedex API](https://pokeapi.co/)
