@@ -36,19 +36,6 @@ export function validateSignIn(email: string, password: string): IValidateData {
     };
   }
 
-  console.log(
-    "normal",
-    userCredentials.some(
-      (user) => user.email === email && user.password === password
-    )
-  );
-  console.log(
-    false,
-    !userCredentials.some(
-      (user) => user.email === email && user.password === password
-    )
-  );
-
   // Validate credentials
   if (
     !userCredentials.some(

@@ -4,7 +4,6 @@ import {
   DetailedHTMLProps,
   ButtonHTMLAttributes,
 } from "react";
-import clsx from "clsx";
 
 const Button = ({
   className,

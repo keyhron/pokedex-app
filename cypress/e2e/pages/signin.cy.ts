@@ -5,7 +5,7 @@ describe("Signin page", () => {
     cy.visit("/iniciar-sesion");
 
     // Check title
-    cy.get("[data-cy=title]").should("contain.text", "Iniciar sesión");
+    cy.dataCy("title").should("contain.text", "Iniciar sesión");
 
     // Check Inputs
     cy.get("input[name=email]").should(
@@ -27,7 +27,7 @@ describe("Signin page", () => {
     cy.visit("/iniciar-sesion");
 
     cy.get("input[name=password]").should("have.attr", "type", "password");
-    cy.get("[data-cy=eye-btn]").click();
+    cy.dataCy("eye-btn").click();
     cy.get("input[name=password]").should("have.attr", "type", "text");
   });
 
@@ -126,23 +126,7 @@ describe("Signin page", () => {
   });
 
   it("Signin success with enter keyboard", function () {
-    const email = "usuario@gmail.com";
-    const password = "01020304";
-
-    cy.visit("/iniciar-sesion");
-
-    cy.get("input[name=email]").type(email);
-
-    // {enter} causes the form to submit
-    cy.get("input[name=password]").type(`${password}{enter}`);
-
-    // We should be redirected to /
-    cy.url().should("include", "/");
-
-    // Our auth token should be present
-    cy.window().then((win) => {
-      cy.wrap(win.localStorage.getItem("token")).should("exist");
-    });
+    cy.SignInAndRedirect();
   });
 
   it("Signin success with click button", function () {
@@ -161,9 +145,28 @@ describe("Signin page", () => {
     cy.url().should("include", "/");
 
     // Our auth token should be present
-    cy.window().then((win) => {
-      cy.wrap(win.localStorage.getItem("token")).should("exist");
-    });
+    cy.window().its("localStorage.token").should("exist");
+  });
+
+  it("Signin and signout", function () {
+    cy.SignInAndRedirect();
+    cy.openMenu();
+    cy.dataCy("btn-signout").should("contain.text", "Cerrar sesión");
+    cy.dataCy("btn-signout").click();
+
+    // We should be redirected to signin
+    cy.url().should("include", "/iniciar-sesion");
+    // Our auth token should not be present
+    cy.window().its("localStorage.token").should("not.exist");
+  });
+
+  it("Signin, after validate token and redirect", function () {
+    cy.SignInAndRedirect();
+
+    cy.visit("/iniciar-sesion");
+
+    // We should be redirected to signin
+    cy.url().should("include", "/");
   });
 });
 

@@ -1,4 +1,11 @@
-import { createContext, useState, ReactNode, useEffect } from "react";
+import {
+  createContext,
+  useState,
+  ReactNode,
+  useEffect,
+  Dispatch,
+  SetStateAction,
+} from "react";
 import { useRouter } from "next/router";
 import Swal from "sweetalert2";
 import { IUser, ICredentials } from "@/interfaces/user";
@@ -7,15 +14,12 @@ import Loader from "@/components/Atoms/Loader";
 
 interface IContextUser {
   user?: IUser;
+  setLoading: Dispatch<SetStateAction<boolean>>;
   signIn: ({ email, password }: ICredentials) => void;
   signOut: () => void;
 }
 
-export const UserContext = createContext<IContextUser>({
-  user: undefined,
-  signIn: () => {},
-  signOut: () => {},
-});
+export const UserContext = createContext<IContextUser>({} as IContextUser);
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<IUser>();
@@ -48,11 +52,11 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const signOut = () => {
+    // Redirect
+    router.push("/iniciar-sesion");
     // Remove token
     localStorage.removeItem("token");
     setUser(undefined);
-    // Redirect
-    router.push("/iniciar-sesion");
   };
 
   const handleUserToken = () => {
@@ -82,11 +86,19 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
         // Values
         user,
         // Methods
+        setLoading,
         signIn,
         signOut,
       }}
     >
-      {loading && <Loader />}
+      {loading && (
+        <div
+          className="fixed z-50 bg-black bg-opacity-30 flex items-center justify-center w-full h-screen transition-transform -translate-x-full sm:translate-x-0"
+          aria-label="loader"
+        >
+          <Loader />
+        </div>
+      )}
       {children}
     </UserContext.Provider>
   );
